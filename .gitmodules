@@ -1,0 +1,6 @@
+[submodule "evernote-thrift"]
+	path = evernote-thrift
+	url = git://github.com/evernote/evernote-thrift.git
+[submodule "evernote-sdk-ios"]
+	path = evernote-sdk-ios
+	url = git://github.com/evernote/evernote-sdk-ios.git
