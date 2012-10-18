@@ -50,6 +50,11 @@
             [proxy setServiceCreated:val];
         }
 
+        val = [args objectForKey:@"serviceUpdated"];
+        if(val) {
+            [proxy setServiceUpdated:val];
+        }
+
         val = [args objectForKey:@"shareKey"];
         if(val) {
             [proxy setShareKey:val];
@@ -93,6 +98,7 @@
         NUMBOOL(object.notebookModifiable), @"notebookModifiable",
         NUMBOOL(object.requireLogin), @"requireLogin",
         NUMLONGLONG(object.serviceCreated), @"serviceCreated",
+        NUMLONGLONG(object.serviceUpdated), @"serviceUpdated",
         object.shareKey, @"shareKey",
         object.username, @"username",
     nil];
@@ -173,6 +179,17 @@
 - (void)setServiceCreated:(id)value
 {
     object.serviceCreated = [value longLongValue];
+}
+
+
+- (id)serviceUpdated
+{
+    return NUMLONGLONG(object.serviceUpdated);
+}
+
+- (void)setServiceUpdated:(id)value
+{
+    object.serviceUpdated = [value longLongValue];
 }
 
 

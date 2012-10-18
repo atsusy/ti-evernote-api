@@ -1,5 +1,5 @@
 #import "TiProxy.h"
-#import "Types.h"
+#import "EDAMTypes.h"
 
 @interface JpMasuidriveTiEvernoteapiNoteAttributesProxy : TiProxy {
 @private
@@ -37,5 +37,17 @@
 
 - (id)shareDate;
 - (void)setShareDate:(id)value;
+
+- (id)placeName;
+- (void)setPlaceName:(id)value;
+
+- (id)contentClass;
+- (void)setContentClass:(id)value;
+
+- (id)applicationData;
+- (void)setApplicationData:(id)value;
+
+- (id)lastEditedBy;
+- (void)setLastEditedBy:(id)value;
 
 @end

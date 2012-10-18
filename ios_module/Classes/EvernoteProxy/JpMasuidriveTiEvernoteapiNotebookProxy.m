@@ -3,6 +3,7 @@
 #import "TiThriftUtils.h"
 
 #import "JpMasuidriveTiEvernoteapiPublishingProxy.h"
+#import "JpMasuidriveTiEvernoteapiSharedNotebookProxy.h"
 
 
 #import "JpMasuidriveTiEvernoteapiModule.h"
@@ -66,6 +67,11 @@
             [proxy setSharedNotebookIds:val];
         }
 
+        val = [args objectForKey:@"sharedNotebooks"];
+        if(val) {
+            [proxy setSharedNotebooks:val];
+        }
+
     }
     return proxy;
 }
@@ -102,6 +108,7 @@
         NUMBOOL(object.published), @"published",
         object.stack, @"stack",
         arrayMap(object.sharedNotebookIds, ^(id item) { return item; }), @"sharedNotebookIds",
+        arrayMap(object.sharedNotebooks, ^(id item) { return [[[JpMasuidriveTiEvernoteapiSharedNotebookProxy alloc] initWithObject: item] autorelease]; }), @"sharedNotebooks",
     nil];
 }
 
@@ -213,6 +220,17 @@
 - (void)setSharedNotebookIds:(id)value
 {
     object.sharedNotebookIds = arrayMap(value, ^(id item) { return item; });
+}
+
+
+- (id)sharedNotebooks
+{
+    return arrayMap(object.sharedNotebooks, ^(id item) { return [[[JpMasuidriveTiEvernoteapiSharedNotebookProxy alloc] initWithObject: item] autorelease]; });
+}
+
+- (void)setSharedNotebooks:(id)value
+{
+    object.sharedNotebooks = arrayMap(value, ^(id item) { return ((JpMasuidriveTiEvernoteapiSharedNotebookProxy*)item).object; });
 }
 
 

@@ -1,5 +1,5 @@
 #import "TiProxy.h"
-#import "UserStore.h"
+#import "EDAMUserStore.h"
 
 @interface JpMasuidriveTiEvernoteapiPublicUserInfoProxy : TiProxy {
 @private
@@ -22,5 +22,8 @@
 
 - (id)username;
 - (void)setUsername:(id)value;
+
+- (id)noteStoreUrl;
+- (void)setNoteStoreUrl:(id)value;
 
 @end

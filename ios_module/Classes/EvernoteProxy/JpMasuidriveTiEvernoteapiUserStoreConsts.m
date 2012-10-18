@@ -10,8 +10,13 @@
 	if(!result) {
 		result = [NSDictionary dictionaryWithObjectsAndKeys:
 			NUMDOUBLE(1.0), @"EDAM_VERSION_MAJOR",
-			NUMDOUBLE(19.0), @"EDAM_VERSION_MINOR",
+			NUMDOUBLE(22.0), @"EDAM_VERSION_MINOR",
 
+			[NSDictionary dictionaryWithObjectsAndKeys:
+				NUMDOUBLE(1), @"GROUP_MEMBER",
+				NUMDOUBLE(2), @"GROUP_ADMIN",
+				NUMDOUBLE(3), @"GROUP_OWNER",
+				nil], @"SponsoredGroupRole",
 
 			nil];
 	}

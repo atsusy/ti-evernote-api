@@ -42,6 +42,16 @@
             [proxy setPublicUserInfo:val];
         }
 
+        val = [args objectForKey:@"noteStoreUrl"];
+        if(val) {
+            [proxy setNoteStoreUrl:val];
+        }
+
+        val = [args objectForKey:@"webApiUrlPrefix"];
+        if(val) {
+            [proxy setWebApiUrlPrefix:val];
+        }
+
     }
     return proxy;
 }
@@ -73,6 +83,8 @@
         NUMLONGLONG(object.expiration), @"expiration",
         [[[JpMasuidriveTiEvernoteapiUserProxy alloc] initWithObject: object.user] autorelease], @"user",
         [[[JpMasuidriveTiEvernoteapiPublicUserInfoProxy alloc] initWithObject: object.publicUserInfo] autorelease], @"publicUserInfo",
+        object.noteStoreUrl, @"noteStoreUrl",
+        object.webApiUrlPrefix, @"webApiUrlPrefix",
     nil];
 }
 
@@ -129,6 +141,28 @@
 - (void)setPublicUserInfo:(id)value
 {
     object.publicUserInfo = ((JpMasuidriveTiEvernoteapiPublicUserInfoProxy*)value).object;
+}
+
+
+- (id)noteStoreUrl
+{
+    return object.noteStoreUrl;
+}
+
+- (void)setNoteStoreUrl:(id)value
+{
+    object.noteStoreUrl = [TiUtils stringValue:value];
+}
+
+
+- (id)webApiUrlPrefix
+{
+    return object.webApiUrlPrefix;
+}
+
+- (void)setWebApiUrlPrefix:(id)value
+{
+    object.webApiUrlPrefix = [TiUtils stringValue:value];
 }
 
 

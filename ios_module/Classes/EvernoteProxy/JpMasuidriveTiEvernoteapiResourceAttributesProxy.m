@@ -2,6 +2,7 @@
 #import "TiUtils.h"
 #import "TiThriftUtils.h"
 
+#import "JpMasuidriveTiEvernoteapiLazyMapProxy.h"
 
 
 #import "JpMasuidriveTiEvernoteapiModule.h"
@@ -70,6 +71,11 @@
             [proxy setAttachment:val];
         }
 
+        val = [args objectForKey:@"applicationData"];
+        if(val) {
+            [proxy setApplicationData:val];
+        }
+
     }
     return proxy;
 }
@@ -107,6 +113,7 @@
         object.recoType, @"recoType",
         object.fileName, @"fileName",
         NUMBOOL(object.attachment), @"attachment",
+        [[[JpMasuidriveTiEvernoteapiLazyMapProxy alloc] initWithObject: object.applicationData] autorelease], @"applicationData",
     nil];
 }
 
@@ -229,6 +236,17 @@
 - (void)setAttachment:(id)value
 {
     object.attachment = [value boolValue];
+}
+
+
+- (id)applicationData
+{
+    return [[[JpMasuidriveTiEvernoteapiLazyMapProxy alloc] initWithObject: object.applicationData] autorelease];
+}
+
+- (void)setApplicationData:(id)value
+{
+    object.applicationData = ((JpMasuidriveTiEvernoteapiLazyMapProxy*)value).object;
 }
 
 

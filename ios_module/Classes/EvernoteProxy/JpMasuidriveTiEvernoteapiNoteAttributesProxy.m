@@ -2,6 +2,7 @@
 #import "TiUtils.h"
 #import "TiThriftUtils.h"
 
+#import "JpMasuidriveTiEvernoteapiLazyMapProxy.h"
 
 
 #import "JpMasuidriveTiEvernoteapiModule.h"
@@ -60,6 +61,26 @@
             [proxy setShareDate:val];
         }
 
+        val = [args objectForKey:@"placeName"];
+        if(val) {
+            [proxy setPlaceName:val];
+        }
+
+        val = [args objectForKey:@"contentClass"];
+        if(val) {
+            [proxy setContentClass:val];
+        }
+
+        val = [args objectForKey:@"applicationData"];
+        if(val) {
+            [proxy setApplicationData:val];
+        }
+
+        val = [args objectForKey:@"lastEditedBy"];
+        if(val) {
+            [proxy setLastEditedBy:val];
+        }
+
     }
     return proxy;
 }
@@ -95,6 +116,10 @@
         object.sourceURL, @"sourceURL",
         object.sourceApplication, @"sourceApplication",
         NUMLONGLONG(object.shareDate), @"shareDate",
+        object.placeName, @"placeName",
+        object.contentClass, @"contentClass",
+        [[[JpMasuidriveTiEvernoteapiLazyMapProxy alloc] initWithObject: object.applicationData] autorelease], @"applicationData",
+        object.lastEditedBy, @"lastEditedBy",
     nil];
 }
 
@@ -195,6 +220,50 @@
 - (void)setShareDate:(id)value
 {
     object.shareDate = [value longLongValue];
+}
+
+
+- (id)placeName
+{
+    return object.placeName;
+}
+
+- (void)setPlaceName:(id)value
+{
+    object.placeName = [TiUtils stringValue:value];
+}
+
+
+- (id)contentClass
+{
+    return object.contentClass;
+}
+
+- (void)setContentClass:(id)value
+{
+    object.contentClass = [TiUtils stringValue:value];
+}
+
+
+- (id)applicationData
+{
+    return [[[JpMasuidriveTiEvernoteapiLazyMapProxy alloc] initWithObject: object.applicationData] autorelease];
+}
+
+- (void)setApplicationData:(id)value
+{
+    object.applicationData = ((JpMasuidriveTiEvernoteapiLazyMapProxy*)value).object;
+}
+
+
+- (id)lastEditedBy
+{
+    return object.lastEditedBy;
+}
+
+- (void)setLastEditedBy:(id)value
+{
+    object.lastEditedBy = [TiUtils stringValue:value];
 }
 
 

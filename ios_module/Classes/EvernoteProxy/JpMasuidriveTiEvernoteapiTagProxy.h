@@ -1,5 +1,5 @@
 #import "TiProxy.h"
-#import "Types.h"
+#import "EDAMTypes.h"
 
 @interface JpMasuidriveTiEvernoteapiTagProxy : TiProxy {
 @private

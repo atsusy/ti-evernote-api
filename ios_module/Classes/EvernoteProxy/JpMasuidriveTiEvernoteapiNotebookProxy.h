@@ -1,5 +1,5 @@
 #import "TiProxy.h"
-#import "Types.h"
+#import "EDAMTypes.h"
 
 @interface JpMasuidriveTiEvernoteapiNotebookProxy : TiProxy {
 @private
@@ -40,5 +40,8 @@
 
 - (id)sharedNotebookIds;
 - (void)setSharedNotebookIds:(id)value;
+
+- (id)sharedNotebooks;
+- (void)setSharedNotebooks:(id)value;
 
 @end

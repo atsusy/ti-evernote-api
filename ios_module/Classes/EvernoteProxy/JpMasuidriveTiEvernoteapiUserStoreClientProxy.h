@@ -1,5 +1,5 @@
 #import "TiProxy.h"
-#import "UserStore.h"
+#import "EDAMUserStore.h"
 #import "JpMasuidriveTiEvernoteapiClientProxy.h"
 
 @interface JpMasuidriveTiEvernoteapiUserStoreClientProxy : JpMasuidriveTiEvernoteapiClientProxy {

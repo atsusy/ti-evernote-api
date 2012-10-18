@@ -4,6 +4,7 @@
 #import "THTTPClient.h"
 #import "TBinaryProtocol.h"
 
+#import "JpMasuidriveTiEvernoteapiClientUsageMetricsProxy.h"
 #import "JpMasuidriveTiEvernoteapiSyncChunkFilterProxy.h"
 #import "JpMasuidriveTiEvernoteapiLinkedNotebookProxy.h"
 #import "JpMasuidriveTiEvernoteapiNotebookProxy.h"
@@ -16,15 +17,19 @@
 #import "JpMasuidriveTiEvernoteapiAdParametersProxy.h"
 #import "JpMasuidriveTiEvernoteapiSharedNotebookProxy.h"
 #import "JpMasuidriveTiEvernoteapiNoteEmailParametersProxy.h"
+#import "JpMasuidriveTiEvernoteapiRelatedQueryProxy.h"
+#import "JpMasuidriveTiEvernoteapiRelatedResultSpecProxy.h"
 #import "JpMasuidriveTiEvernoteapiSyncStateProxy.h"
 #import "JpMasuidriveTiEvernoteapiSyncChunkProxy.h"
 #import "JpMasuidriveTiEvernoteapiNoteListProxy.h"
 #import "JpMasuidriveTiEvernoteapiNotesMetadataListProxy.h"
 #import "JpMasuidriveTiEvernoteapiNoteCollectionCountsProxy.h"
+#import "JpMasuidriveTiEvernoteapiLazyMapProxy.h"
 #import "JpMasuidriveTiEvernoteapiNoteVersionIdProxy.h"
 #import "JpMasuidriveTiEvernoteapiResourceAttributesProxy.h"
 #import "JpMasuidriveTiEvernoteapiAdProxy.h"
 #import "JpMasuidriveTiEvernoteapiAuthenticationResultProxy.h"
+#import "JpMasuidriveTiEvernoteapiRelatedResultProxy.h"
 
 
 #import "JpMasuidriveTiEvernoteapiModule.h"
@@ -67,6 +72,36 @@
         KrollCallback* callback = [args objectAtIndex:1];
         @try {
             NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: [[[JpMasuidriveTiEvernoteapiSyncStateProxy alloc] initWithObject: [client getSyncState : [TiUtils stringValue:[args objectAtIndex:0]]]] autorelease], @"result", nil];
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
+        }
+        @catch (id exception) {
+            NSDictionary *event;
+            if([exception respondsToSelector:@selector(dictionary)]) {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [exception exceptionName], @"exceptionType",
+                    [exception dictionary], @"error",
+                    nil];
+            }
+            else {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    NSStringFromClass([exception class]), @"exceptionType",
+                    exception, @"error",
+                    nil];
+            }
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"error", event, callback, nil]];
+        }
+    });
+    return self;
+}
+
+- (id)getSyncStateWithMetrics: (id)args
+{
+    ENSURE_ARG_COUNT(args, 3);
+
+    dispatch_async(queue, ^{
+        KrollCallback* callback = [args objectAtIndex:2];
+        @try {
+            NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: [[[JpMasuidriveTiEvernoteapiSyncStateProxy alloc] initWithObject: [client getSyncStateWithMetrics : [TiUtils stringValue:[args objectAtIndex:0]] : ((JpMasuidriveTiEvernoteapiClientUsageMetricsProxy*)[args objectAtIndex:1]).object]] autorelease], @"result", nil];
             [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
         }
         @catch (id exception) {
@@ -900,6 +935,126 @@
     return self;
 }
 
+- (id)getNoteApplicationData: (id)args
+{
+    ENSURE_ARG_COUNT(args, 3);
+
+    dispatch_async(queue, ^{
+        KrollCallback* callback = [args objectAtIndex:2];
+        @try {
+            NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: [[[JpMasuidriveTiEvernoteapiLazyMapProxy alloc] initWithObject: [client getNoteApplicationData : [TiUtils stringValue:[args objectAtIndex:0]] : [TiUtils stringValue:[args objectAtIndex:1]]]] autorelease], @"result", nil];
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
+        }
+        @catch (id exception) {
+            NSDictionary *event;
+            if([exception respondsToSelector:@selector(dictionary)]) {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [exception exceptionName], @"exceptionType",
+                    [exception dictionary], @"error",
+                    nil];
+            }
+            else {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    NSStringFromClass([exception class]), @"exceptionType",
+                    exception, @"error",
+                    nil];
+            }
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"error", event, callback, nil]];
+        }
+    });
+    return self;
+}
+
+- (id)getNoteApplicationDataEntry: (id)args
+{
+    ENSURE_ARG_COUNT(args, 4);
+
+    dispatch_async(queue, ^{
+        KrollCallback* callback = [args objectAtIndex:3];
+        @try {
+            NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: [client getNoteApplicationDataEntry : [TiUtils stringValue:[args objectAtIndex:0]] : [TiUtils stringValue:[args objectAtIndex:1]] : [TiUtils stringValue:[args objectAtIndex:2]]], @"result", nil];
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
+        }
+        @catch (id exception) {
+            NSDictionary *event;
+            if([exception respondsToSelector:@selector(dictionary)]) {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [exception exceptionName], @"exceptionType",
+                    [exception dictionary], @"error",
+                    nil];
+            }
+            else {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    NSStringFromClass([exception class]), @"exceptionType",
+                    exception, @"error",
+                    nil];
+            }
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"error", event, callback, nil]];
+        }
+    });
+    return self;
+}
+
+- (id)setNoteApplicationDataEntry: (id)args
+{
+    ENSURE_ARG_COUNT(args, 5);
+
+    dispatch_async(queue, ^{
+        KrollCallback* callback = [args objectAtIndex:4];
+        @try {
+            NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: NUMLONG([client setNoteApplicationDataEntry : [TiUtils stringValue:[args objectAtIndex:0]] : [TiUtils stringValue:[args objectAtIndex:1]] : [TiUtils stringValue:[args objectAtIndex:2]] : [TiUtils stringValue:[args objectAtIndex:3]]]), @"result", nil];
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
+        }
+        @catch (id exception) {
+            NSDictionary *event;
+            if([exception respondsToSelector:@selector(dictionary)]) {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [exception exceptionName], @"exceptionType",
+                    [exception dictionary], @"error",
+                    nil];
+            }
+            else {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    NSStringFromClass([exception class]), @"exceptionType",
+                    exception, @"error",
+                    nil];
+            }
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"error", event, callback, nil]];
+        }
+    });
+    return self;
+}
+
+- (id)unsetNoteApplicationDataEntry: (id)args
+{
+    ENSURE_ARG_COUNT(args, 4);
+
+    dispatch_async(queue, ^{
+        KrollCallback* callback = [args objectAtIndex:3];
+        @try {
+            NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: NUMLONG([client unsetNoteApplicationDataEntry : [TiUtils stringValue:[args objectAtIndex:0]] : [TiUtils stringValue:[args objectAtIndex:1]] : [TiUtils stringValue:[args objectAtIndex:2]]]), @"result", nil];
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
+        }
+        @catch (id exception) {
+            NSDictionary *event;
+            if([exception respondsToSelector:@selector(dictionary)]) {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [exception exceptionName], @"exceptionType",
+                    [exception dictionary], @"error",
+                    nil];
+            }
+            else {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    NSStringFromClass([exception class]), @"exceptionType",
+                    exception, @"error",
+                    nil];
+            }
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"error", event, callback, nil]];
+        }
+    });
+    return self;
+}
+
 - (id)getNoteContent: (id)args
 {
     ENSURE_ARG_COUNT(args, 3);
@@ -1320,6 +1475,126 @@
     return self;
 }
 
+- (id)getResourceApplicationData: (id)args
+{
+    ENSURE_ARG_COUNT(args, 3);
+
+    dispatch_async(queue, ^{
+        KrollCallback* callback = [args objectAtIndex:2];
+        @try {
+            NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: [[[JpMasuidriveTiEvernoteapiLazyMapProxy alloc] initWithObject: [client getResourceApplicationData : [TiUtils stringValue:[args objectAtIndex:0]] : [TiUtils stringValue:[args objectAtIndex:1]]]] autorelease], @"result", nil];
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
+        }
+        @catch (id exception) {
+            NSDictionary *event;
+            if([exception respondsToSelector:@selector(dictionary)]) {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [exception exceptionName], @"exceptionType",
+                    [exception dictionary], @"error",
+                    nil];
+            }
+            else {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    NSStringFromClass([exception class]), @"exceptionType",
+                    exception, @"error",
+                    nil];
+            }
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"error", event, callback, nil]];
+        }
+    });
+    return self;
+}
+
+- (id)getResourceApplicationDataEntry: (id)args
+{
+    ENSURE_ARG_COUNT(args, 4);
+
+    dispatch_async(queue, ^{
+        KrollCallback* callback = [args objectAtIndex:3];
+        @try {
+            NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: [client getResourceApplicationDataEntry : [TiUtils stringValue:[args objectAtIndex:0]] : [TiUtils stringValue:[args objectAtIndex:1]] : [TiUtils stringValue:[args objectAtIndex:2]]], @"result", nil];
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
+        }
+        @catch (id exception) {
+            NSDictionary *event;
+            if([exception respondsToSelector:@selector(dictionary)]) {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [exception exceptionName], @"exceptionType",
+                    [exception dictionary], @"error",
+                    nil];
+            }
+            else {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    NSStringFromClass([exception class]), @"exceptionType",
+                    exception, @"error",
+                    nil];
+            }
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"error", event, callback, nil]];
+        }
+    });
+    return self;
+}
+
+- (id)setResourceApplicationDataEntry: (id)args
+{
+    ENSURE_ARG_COUNT(args, 5);
+
+    dispatch_async(queue, ^{
+        KrollCallback* callback = [args objectAtIndex:4];
+        @try {
+            NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: NUMLONG([client setResourceApplicationDataEntry : [TiUtils stringValue:[args objectAtIndex:0]] : [TiUtils stringValue:[args objectAtIndex:1]] : [TiUtils stringValue:[args objectAtIndex:2]] : [TiUtils stringValue:[args objectAtIndex:3]]]), @"result", nil];
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
+        }
+        @catch (id exception) {
+            NSDictionary *event;
+            if([exception respondsToSelector:@selector(dictionary)]) {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [exception exceptionName], @"exceptionType",
+                    [exception dictionary], @"error",
+                    nil];
+            }
+            else {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    NSStringFromClass([exception class]), @"exceptionType",
+                    exception, @"error",
+                    nil];
+            }
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"error", event, callback, nil]];
+        }
+    });
+    return self;
+}
+
+- (id)unsetResourceApplicationDataEntry: (id)args
+{
+    ENSURE_ARG_COUNT(args, 4);
+
+    dispatch_async(queue, ^{
+        KrollCallback* callback = [args objectAtIndex:3];
+        @try {
+            NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: NUMLONG([client unsetResourceApplicationDataEntry : [TiUtils stringValue:[args objectAtIndex:0]] : [TiUtils stringValue:[args objectAtIndex:1]] : [TiUtils stringValue:[args objectAtIndex:2]]]), @"result", nil];
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
+        }
+        @catch (id exception) {
+            NSDictionary *event;
+            if([exception respondsToSelector:@selector(dictionary)]) {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [exception exceptionName], @"exceptionType",
+                    [exception dictionary], @"error",
+                    nil];
+            }
+            else {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    NSStringFromClass([exception class]), @"exceptionType",
+                    exception, @"error",
+                    nil];
+            }
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"error", event, callback, nil]];
+        }
+    });
+    return self;
+}
+
 - (id)updateResource: (id)args
 {
     ENSURE_ARG_COUNT(args, 3);
@@ -1628,6 +1903,36 @@
         KrollCallback* callback = [args objectAtIndex:2];
         @try {
             NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: [[[JpMasuidriveTiEvernoteapiSharedNotebookProxy alloc] initWithObject: [client createSharedNotebook : [TiUtils stringValue:[args objectAtIndex:0]] : ((JpMasuidriveTiEvernoteapiSharedNotebookProxy*)[args objectAtIndex:1]).object]] autorelease], @"result", nil];
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
+        }
+        @catch (id exception) {
+            NSDictionary *event;
+            if([exception respondsToSelector:@selector(dictionary)]) {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [exception exceptionName], @"exceptionType",
+                    [exception dictionary], @"error",
+                    nil];
+            }
+            else {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    NSStringFromClass([exception class]), @"exceptionType",
+                    exception, @"error",
+                    nil];
+            }
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"error", event, callback, nil]];
+        }
+    });
+    return self;
+}
+
+- (id)sendMessageToSharedNotebookMembers: (id)args
+{
+    ENSURE_ARG_COUNT(args, 5);
+
+    dispatch_async(queue, ^{
+        KrollCallback* callback = [args objectAtIndex:4];
+        @try {
+            NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: NUMLONG([client sendMessageToSharedNotebookMembers : [TiUtils stringValue:[args objectAtIndex:0]] : [TiUtils stringValue:[args objectAtIndex:1]] : [TiUtils stringValue:[args objectAtIndex:2]] : arrayMap([args objectAtIndex:3], ^(id item) { return item; })]), @"result", nil];
             [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
         }
         @catch (id exception) {
@@ -1990,6 +2295,36 @@
         KrollCallback* callback = [args objectAtIndex:2];
         @try {
             NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: [[[JpMasuidriveTiEvernoteapiAuthenticationResultProxy alloc] initWithObject: [client authenticateToSharedNote : [TiUtils stringValue:[args objectAtIndex:0]] : [TiUtils stringValue:[args objectAtIndex:1]]]] autorelease], @"result", nil];
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
+        }
+        @catch (id exception) {
+            NSDictionary *event;
+            if([exception respondsToSelector:@selector(dictionary)]) {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [exception exceptionName], @"exceptionType",
+                    [exception dictionary], @"error",
+                    nil];
+            }
+            else {
+                event = [NSDictionary dictionaryWithObjectsAndKeys:
+                    NSStringFromClass([exception class]), @"exceptionType",
+                    exception, @"error",
+                    nil];
+            }
+            [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"error", event, callback, nil]];
+        }
+    });
+    return self;
+}
+
+- (id)findRelated: (id)args
+{
+    ENSURE_ARG_COUNT(args, 4);
+
+    dispatch_async(queue, ^{
+        KrollCallback* callback = [args objectAtIndex:3];
+        @try {
+            NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: [[[JpMasuidriveTiEvernoteapiRelatedResultProxy alloc] initWithObject: [client findRelated : [TiUtils stringValue:[args objectAtIndex:0]] : ((JpMasuidriveTiEvernoteapiRelatedQueryProxy*)[args objectAtIndex:1]).object : ((JpMasuidriveTiEvernoteapiRelatedResultSpecProxy*)[args objectAtIndex:2]).object]] autorelease], @"result", nil];
             [NSThread detachNewThreadSelector:@selector(dispatchCallback:) toTarget:self withObject:[NSArray arrayWithObjects:@"success", event, callback, nil]];
         }
         @catch (id exception) {

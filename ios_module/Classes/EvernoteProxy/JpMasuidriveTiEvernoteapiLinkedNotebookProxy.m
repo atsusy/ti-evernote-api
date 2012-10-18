@@ -50,6 +50,16 @@
             [proxy setUpdateSequenceNum:val];
         }
 
+        val = [args objectForKey:@"noteStoreUrl"];
+        if(val) {
+            [proxy setNoteStoreUrl:val];
+        }
+
+        val = [args objectForKey:@"webApiUrlPrefix"];
+        if(val) {
+            [proxy setWebApiUrlPrefix:val];
+        }
+
     }
     return proxy;
 }
@@ -83,6 +93,8 @@
         object.uri, @"uri",
         object.guid, @"guid",
         NUMLONG(object.updateSequenceNum), @"updateSequenceNum",
+        object.noteStoreUrl, @"noteStoreUrl",
+        object.webApiUrlPrefix, @"webApiUrlPrefix",
     nil];
 }
 
@@ -161,6 +173,28 @@
 - (void)setUpdateSequenceNum:(id)value
 {
     object.updateSequenceNum = [value longValue];
+}
+
+
+- (id)noteStoreUrl
+{
+    return object.noteStoreUrl;
+}
+
+- (void)setNoteStoreUrl:(id)value
+{
+    object.noteStoreUrl = [TiUtils stringValue:value];
+}
+
+
+- (id)webApiUrlPrefix
+{
+    return object.webApiUrlPrefix;
+}
+
+- (void)setWebApiUrlPrefix:(id)value
+{
+    object.webApiUrlPrefix = [TiUtils stringValue:value];
 }
 
 

@@ -1,6 +1,6 @@
 $LOAD_PATH << './lib'
 
-THRIFT_PATH = './evernote-api-1.19/thrift/'
+THRIFT_PATH = './evernote-thrift/src'
 MODULE_ID = 'jp.masuidrive.ti.evernoteapi'
 
 

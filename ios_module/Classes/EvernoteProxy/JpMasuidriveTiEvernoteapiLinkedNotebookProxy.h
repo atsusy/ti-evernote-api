@@ -1,5 +1,5 @@
 #import "TiProxy.h"
-#import "Types.h"
+#import "EDAMTypes.h"
 
 @interface JpMasuidriveTiEvernoteapiLinkedNotebookProxy : TiProxy {
 @private
@@ -31,5 +31,11 @@
 
 - (id)updateSequenceNum;
 - (void)setUpdateSequenceNum:(id)value;
+
+- (id)noteStoreUrl;
+- (void)setNoteStoreUrl:(id)value;
+
+- (id)webApiUrlPrefix;
+- (void)setWebApiUrlPrefix:(id)value;
 
 @end

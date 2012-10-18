@@ -60,6 +60,26 @@
             [proxy setIncludeExpunged:val];
         }
 
+        val = [args objectForKey:@"includeNoteApplicationDataFullMap"];
+        if(val) {
+            [proxy setIncludeNoteApplicationDataFullMap:val];
+        }
+
+        val = [args objectForKey:@"includeResourceApplicationDataFullMap"];
+        if(val) {
+            [proxy setIncludeResourceApplicationDataFullMap:val];
+        }
+
+        val = [args objectForKey:@"includeNoteResourceApplicationDataFullMap"];
+        if(val) {
+            [proxy setIncludeNoteResourceApplicationDataFullMap:val];
+        }
+
+        val = [args objectForKey:@"requireNoteContentClass"];
+        if(val) {
+            [proxy setRequireNoteContentClass:val];
+        }
+
     }
     return proxy;
 }
@@ -95,6 +115,10 @@
         NUMBOOL(object.includeResources), @"includeResources",
         NUMBOOL(object.includeLinkedNotebooks), @"includeLinkedNotebooks",
         NUMBOOL(object.includeExpunged), @"includeExpunged",
+        NUMBOOL(object.includeNoteApplicationDataFullMap), @"includeNoteApplicationDataFullMap",
+        NUMBOOL(object.includeResourceApplicationDataFullMap), @"includeResourceApplicationDataFullMap",
+        NUMBOOL(object.includeNoteResourceApplicationDataFullMap), @"includeNoteResourceApplicationDataFullMap",
+        object.requireNoteContentClass, @"requireNoteContentClass",
     nil];
 }
 
@@ -195,6 +219,50 @@
 - (void)setIncludeExpunged:(id)value
 {
     object.includeExpunged = [value boolValue];
+}
+
+
+- (id)includeNoteApplicationDataFullMap
+{
+    return NUMBOOL(object.includeNoteApplicationDataFullMap);
+}
+
+- (void)setIncludeNoteApplicationDataFullMap:(id)value
+{
+    object.includeNoteApplicationDataFullMap = [value boolValue];
+}
+
+
+- (id)includeResourceApplicationDataFullMap
+{
+    return NUMBOOL(object.includeResourceApplicationDataFullMap);
+}
+
+- (void)setIncludeResourceApplicationDataFullMap:(id)value
+{
+    object.includeResourceApplicationDataFullMap = [value boolValue];
+}
+
+
+- (id)includeNoteResourceApplicationDataFullMap
+{
+    return NUMBOOL(object.includeNoteResourceApplicationDataFullMap);
+}
+
+- (void)setIncludeNoteResourceApplicationDataFullMap:(id)value
+{
+    object.includeNoteResourceApplicationDataFullMap = [value boolValue];
+}
+
+
+- (id)requireNoteContentClass
+{
+    return object.requireNoteContentClass;
+}
+
+- (void)setRequireNoteContentClass:(id)value
+{
+    object.requireNoteContentClass = [TiUtils stringValue:value];
 }
 
 

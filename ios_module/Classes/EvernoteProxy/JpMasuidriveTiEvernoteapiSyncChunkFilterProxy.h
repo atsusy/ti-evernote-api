@@ -1,5 +1,5 @@
 #import "TiProxy.h"
-#import "NoteStore.h"
+#import "EDAMNoteStore.h"
 
 @interface JpMasuidriveTiEvernoteapiSyncChunkFilterProxy : TiProxy {
 @private
@@ -37,5 +37,17 @@
 
 - (id)includeExpunged;
 - (void)setIncludeExpunged:(id)value;
+
+- (id)includeNoteApplicationDataFullMap;
+- (void)setIncludeNoteApplicationDataFullMap:(id)value;
+
+- (id)includeResourceApplicationDataFullMap;
+- (void)setIncludeResourceApplicationDataFullMap:(id)value;
+
+- (id)includeNoteResourceApplicationDataFullMap;
+- (void)setIncludeNoteResourceApplicationDataFullMap:(id)value;
+
+- (id)requireNoteContentClass;
+- (void)setRequireNoteContentClass:(id)value;
 
 @end

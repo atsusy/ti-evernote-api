@@ -1,4 +1,4 @@
-#import "Errors.h"
+#import "EDAMErrors.h"
 #import "TiUtils.h"
 #import "TiThriftUtils.h"
 

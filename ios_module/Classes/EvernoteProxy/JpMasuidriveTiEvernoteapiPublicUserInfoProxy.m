@@ -35,6 +35,11 @@
             [proxy setUsername:val];
         }
 
+        val = [args objectForKey:@"noteStoreUrl"];
+        if(val) {
+            [proxy setNoteStoreUrl:val];
+        }
+
     }
     return proxy;
 }
@@ -65,6 +70,7 @@
         object.shardId, @"shardId",
         NUMLONG(object.privilege), @"privilege",
         object.username, @"username",
+        object.noteStoreUrl, @"noteStoreUrl",
     nil];
 }
 
@@ -110,6 +116,17 @@
 - (void)setUsername:(id)value
 {
     object.username = [TiUtils stringValue:value];
+}
+
+
+- (id)noteStoreUrl
+{
+    return object.noteStoreUrl;
+}
+
+- (void)setNoteStoreUrl:(id)value
+{
+    object.noteStoreUrl = [TiUtils stringValue:value];
 }
 
 
