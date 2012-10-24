@@ -102,6 +102,7 @@
 		312CE0811630232C0005E5C2 /* ENCredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 312CE0471630232C0005E5C2 /* ENCredentialStore.m */; };
 		312CE0821630232C0005E5C2 /* ENOAuthViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 312CE0481630232C0005E5C2 /* ENOAuthViewController.h */; };
 		312CE0831630232C0005E5C2 /* ENOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312CE0491630232C0005E5C2 /* ENOAuthViewController.m */; };
+		3186F02F1637634C008F565C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3186F02E1637634C008F565C /* Security.framework */; };
 		5939DE2214A42D8400F01FF2 /* JpMasuidriveTiEvernoteapiClientProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 5939DE2014A42D8400F01FF2 /* JpMasuidriveTiEvernoteapiClientProxy.h */; };
 		5939DE2314A42D8400F01FF2 /* JpMasuidriveTiEvernoteapiClientProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5939DE2114A42D8400F01FF2 /* JpMasuidriveTiEvernoteapiClientProxy.m */; };
 		5939DE6B14A4321E00F01FF2 /* JpMasuidriveTiEvernoteapiAccountingProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 5939DE2614A4321E00F01FF2 /* JpMasuidriveTiEvernoteapiAccountingProxy.h */; };
@@ -278,6 +279,7 @@
 		312CE0471630232C0005E5C2 /* ENCredentialStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENCredentialStore.m; sourceTree = "<group>"; };
 		312CE0481630232C0005E5C2 /* ENOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ENOAuthViewController.h; sourceTree = "<group>"; };
 		312CE0491630232C0005E5C2 /* ENOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENOAuthViewController.m; sourceTree = "<group>"; };
+		3186F02E1637634C008F565C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5939DE2014A42D8400F01FF2 /* JpMasuidriveTiEvernoteapiClientProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JpMasuidriveTiEvernoteapiClientProxy.h; path = Classes/JpMasuidriveTiEvernoteapiClientProxy.h; sourceTree = "<group>"; };
 		5939DE2114A42D8400F01FF2 /* JpMasuidriveTiEvernoteapiClientProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JpMasuidriveTiEvernoteapiClientProxy.m; path = Classes/JpMasuidriveTiEvernoteapiClientProxy.m; sourceTree = "<group>"; };
 		5939DE2614A4321E00F01FF2 /* JpMasuidriveTiEvernoteapiAccountingProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JpMasuidriveTiEvernoteapiAccountingProxy.h; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3186F02F1637634C008F565C /* Security.framework in Frameworks */,
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +396,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3186F02E1637634C008F565C /* Security.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
 			);
 			name = Frameworks;
